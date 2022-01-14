@@ -8,6 +8,7 @@ import Item from "./Components/Item/Item";
 import chatIcon from "./assets/img/icon-chat.png";
 import moneyIcon from "./assets/img/icon-money.png" ;
 import securityIcon from "./assets/img/icon-security.png" ;
+import Footer from "./Components/Footer/Footer";
 
 
 
@@ -32,8 +33,8 @@ function App() {
                   title={"Security you can trust"}
                   text={"We use top of the line encryption to make sure your data and money is always safe. "}
               />
-
           </Feature>
+          <Footer text={"Copyright 2022 Argent Bank"} />
 
       </BrowserRouter>
   );
