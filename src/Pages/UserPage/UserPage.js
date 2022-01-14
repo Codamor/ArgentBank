@@ -12,7 +12,7 @@ import "./UserPage.css" ;
 class UserPage extends React.Component{
     render() {
         return (
-            <main class="main bg-dark">
+            <main className="main bg-dark">
                 <div className="header">
                     <h1>Welcome back<br/>{this.props.name}</h1>
                     <button className="edit-button">Edit Name</button>
@@ -30,8 +30,5 @@ class UserPage extends React.Component{
     }
 }
 
-UserPage.propTypes = {
-    name: PropTypes.string.isRequired
-}
 
 export default UserPage ;
