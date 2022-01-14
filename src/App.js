@@ -1,6 +1,15 @@
+import React from "react";
+import {BrowserRouter} from "react-router-dom";
+import Navigation from "./Components/Navigation/Navigation";
+
+
+
 function App() {
   return (
-      <h1>Welcome to React default setup</h1>
+      <BrowserRouter>
+          <Navigation />
+
+      </BrowserRouter>
   );
 }
 
