@@ -10,12 +10,12 @@ import PropTypes from "prop-types";
 class HomePage extends React.Component{
     render() {
         return (
-            <React.Fragment>
+            <main>
                 {
                     this.props.children
                 }
 
-            </React.Fragment>
+            </main>
         );
     }
 }
