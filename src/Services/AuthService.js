@@ -1,4 +1,4 @@
-import http from '../http-common';
+import http from './http-common';
 
 const API_URL = "localhost:3001/api/v1" ;
 
