@@ -18,8 +18,8 @@ function App() {
 
               <Routes>
                   <Route exact path="/" element={<HomePage />} />
-                  <Route path="/signin" element={<SignInPage />} />
-                  <Route path="/user" element={<UserPage />} />
+                  <Route path="/user/login" element={<SignInPage />} />
+                  <Route path="/user/profile" element={<UserPage />} />
               </Routes>
 
               <Footer text={"Copyright 2022 Argent Bank"} />
