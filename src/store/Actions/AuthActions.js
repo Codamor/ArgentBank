@@ -1,51 +1,35 @@
 import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
-    LOGOUT,
-
+    LOGOUT
 } from "../Types/AuthTypes";
 
-import AuthService from '../services/auth.service';
+import AuthService from "../../Services/AuthService";
 
-export const signupNewUser = (email, password, firstName, lastName) => (dispatch) => {
-    return AuthService.signup(email, password, firstName, lastName).then(
-        () => {
-            dispatch({
-                type: SIGNUP_SUCCESS,
-            });
+export const login = (email, password) => (dispatch) => {
+    return (
+        AuthService
+            .login(
+                {email: email, password: password }).then(
+                () => {
+                    dispatch({
+                        type: LOGIN_SUCCESS,
+                    });
 
-            return Promise.resolve();
-        },
-        () => {
-            dispatch({
-                type: SIGNUP_FAIL,
-            });
+                    return Promise.resolve();
+                },
+                () => {
+                    dispatch({
+                        type: LOGIN_FAIL,
+                    });
 
-            return Promise.reject();
-        },
-    );
+                    return Promise.reject();
+                },
+        )
+    )
 };
 
-export const signinUser = (email, password) => (dispatch) => {
-    return AuthService.login({ email: email, password: password }).then(
-        () => {
-            dispatch({
-                type: LOGIN_SUCCESS,
-            });
-
-            return Promise.resolve();
-        },
-        () => {
-            dispatch({
-                type: LOGIN_FAIL,
-            });
-
-            return Promise.reject();
-        },
-    );
-};
-
-export const signoutUser = () => (dispatch) => {
+export const logout = () => (dispatch) => {
     AuthService.logout();
 
     dispatch({
