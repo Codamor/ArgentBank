@@ -1,4 +1,4 @@
-import axios from "axios" ;
+import http from '../http-common';
 
 const API_URL = "localhost:3001/api/v1" ;
 
@@ -7,24 +7,21 @@ const API_URL = "localhost:3001/api/v1" ;
  *
  */
 class AuthService {
-
-    login(userName, password){
+    login(data) {
         return (
-            axios
-                .post(API_URL + "user/login", {userName, password})
-                .then(response => {
-                    if (response.data.accessToken) {
-                        localStorage.setItem("user", JSON.stringify(response.data)) ;
-                    }
+            http.post('/user/login', data)
+                .then((response) => {
 
-                    return response.data ;
-                })
+                if (response.data.body.token) {
+                    localStorage.setItem('token', JSON.stringify(response.data.body.token));
+                }
+            })
         )
     }
 
-    logout(){
-        localStorage.removeItem("user") ;
+    logout() {
+        localStorage.removeItem('token');
     }
 }
 
-export default new AuthService() ;
+export default new AuthService();
