@@ -21,6 +21,10 @@ class AuthService {
                 })
         )
     }
+
+    logout(){
+        localStorage.removeItem("user") ;
+    }
 }
 
-export default AuthService ;
+export default new AuthService() ;
