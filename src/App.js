@@ -5,23 +5,28 @@ import Footer from "./Components/Footer/Footer";
 import HomePage from "./Pages/HomePage";
 import SignInPage from "./Pages/SignInPage";
 import UserPage from "./Pages/UserPage/UserPage";
+import {Provider} from "react-redux";
+import {store} from "./store/store";
 
 
 
 function App() {
   return (
-      <BrowserRouter>
-          <Navigation />
+      <Provider store={store} >
+          <BrowserRouter>
+              <Navigation />
 
-          <Routes>
-              <Route exact path="/" element={<HomePage />} />
-              <Route path="/sign-in" element={<SignInPage />} />
-              <Route path="/user" element={<UserPage />} />
-          </Routes>
+              <Routes>
+                  <Route exact path="/" element={<HomePage />} />
+                  <Route path="/signin" element={<SignInPage />} />
+                  <Route path="/user" element={<UserPage />} />
+              </Routes>
 
-          <Footer text={"Copyright 2022 Argent Bank"} />
+              <Footer text={"Copyright 2022 Argent Bank"} />
 
-      </BrowserRouter>
+          </BrowserRouter>
+      </Provider>
+
   );
 }
 
