@@ -1,6 +1,6 @@
 import {
     LOGIN_SUCCESS,
-    LOGIN_FAIL,
+    LOGIN_FAILED,
     LOGOUT
 } from "../Types/AuthTypes";
 
@@ -20,7 +20,7 @@ export const login = (email, password) => (dispatch) => {
                 },
                 () => {
                     dispatch({
-                        type: LOGIN_FAIL,
+                        type: LOGIN_FAILED,
                     });
 
                     return Promise.reject();
