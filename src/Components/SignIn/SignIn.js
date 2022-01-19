@@ -80,20 +80,17 @@ class SignIn extends React.Component{
             loading: true,
         });
 
-        const { dispatch } = this.props;
 
-        dispatch(login(this.state.email, this.state.password))
+        this.props.login(this.state.email, this.state.password)
             .then(() => {
                 if (this.state.rememberMe) {
                     const savedUser = { email: this.state.email, password: this.state.password };
                     localStorage.setItem('rememberedUser', JSON.stringify(savedUser));
-                } else localStorage.removeItem('rememberedUser');
-                dispatch(fetchProfile()).then(() => {
                     this.setState({
                         loading: false,
                     });
-                });
-            })
+                } else localStorage.removeItem('rememberedUser');
+                            })
             .catch(() => {
                 this.setState({
                     loading: false,
@@ -132,4 +129,11 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(SignIn) ;
+function mapDispatchToProps(dispatch){
+    return {
+        fetchProfile: () => dispatch(fetchProfile()),
+        login: (email, password) => dispatch(login(email, password))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn) ;
