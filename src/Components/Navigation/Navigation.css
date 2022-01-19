@@ -19,6 +19,9 @@
     margin-right: 0.5rem;
 }
 
+.main-nav-item i{
+    margin-right: 7px;
+}
 
 .main-nav-login a{
     margin-right: 20px;
