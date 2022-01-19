@@ -34,7 +34,6 @@ class Navigation extends React.Component{
                     <h1 className="sr-only">Argent Bank</h1>
                 </Link>
 
-
                 <div>
                     {
                         !this.state.loggedUser && (
@@ -54,22 +53,16 @@ class Navigation extends React.Component{
                                     {this.state.userFirstName}
                                 </NavLink>
 
-                                <NavLink to="/signin" onClick={() => this.handleLogout()}>
+                                <NavLink to="/" onClick={() => this.handleLogout()}>
                                     <i className="fas fa-sign-out-alt"></i>
                                     Sign Out
                                 </NavLink>
 
                             </div>
-
-
-
-
                         )
                     }
 
                 </div>
-
-
             </nav>
         );
     }
@@ -91,8 +84,6 @@ class Navigation extends React.Component{
         const { dispatch } = this.props;
         dispatch(logout());
     }
-
-
 }
 
 
