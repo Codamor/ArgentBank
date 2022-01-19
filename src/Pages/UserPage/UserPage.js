@@ -4,6 +4,7 @@ import {Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import ProfileEditor from "../../Components/ProfileEditor/ProfileEditor";
 import "./UserPage.css" ;
+import Account from "../../Components/Account/Account";
 
 /**
  * Component for showing the UserPage component
@@ -58,14 +59,18 @@ class UserPage extends React.Component{
                             )
                     }
 
-
-
                 </div>
 
 
                 <h2 className="sr-only">Accounts</h2>
 
-                <section className="account">
+                <section>
+
+                    <Account
+                        title="Argent Bank Checking(x8349)"
+                        amount="$2,082.79"
+                        description="View transactions"
+                    />
 
                 </section>
             </main>
