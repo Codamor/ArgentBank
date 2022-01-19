@@ -55,7 +55,7 @@ class Navigation extends React.Component{
                                 </NavLink>
 
                                 <NavLink to="/signin" onClick={() => this.handleLogout()}>
-                                    <i class="fas fa-sign-out-alt"></i>
+                                    <i className="fas fa-sign-out-alt"></i>
                                     Sign Out
                                 </NavLink>
 
