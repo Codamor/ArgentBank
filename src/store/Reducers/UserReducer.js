@@ -10,7 +10,6 @@ export function userReducer(userProfile = initialState, action) {
     switch (type) {
 
         case GET_USER_PROFILE:
-            console.log("get profile")
             return payload;
 
         case UPDATE_PROFILE_SUCCESS: {
