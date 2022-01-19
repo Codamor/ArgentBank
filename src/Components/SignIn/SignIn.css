@@ -23,6 +23,12 @@
     font-size: 5rem;
 }
 
+.sign-in-error{
+    margin-top: 5px;
+    font-size: 0.8em;
+    color: red;
+}
+
 .input-remember {
     display: flex;
 }

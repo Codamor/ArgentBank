@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {login} from "../../store/Actions/AuthActions";
 import "./SignIn.css" ;
 import {Redirect} from "react-router-dom";
+import {fetchProfile} from "../../store/Actions/UserActions";
 
 /**
  * Component for showing the sign in form
@@ -56,6 +57,7 @@ class SignIn extends React.Component{
                 >
                 </div>
                 <button type="submit" className="sign-in-button">Sign In</button>
+                {this.state.showError && <div className="sign-in-error"> Signin failed: verify email and password </div>}
             </form>
         );
     }
@@ -78,14 +80,17 @@ class SignIn extends React.Component{
             loading: true,
         });
 
-        const { dispatch } = this.props;
 
-        dispatch(login(this.state.email, this.state.password))
+        this.props.login(this.state.email, this.state.password)
             .then(() => {
-                if (this.state.rememberUser) {
+                if (this.state.rememberMe) {
                     const savedUser = { email: this.state.email, password: this.state.password };
                     localStorage.setItem('rememberedUser', JSON.stringify(savedUser));
+                    this.setState({
+                        loading: false,
+                    });
                 } else localStorage.removeItem('rememberedUser');
+                this.props.fetchProfile()
             })
             .catch(() => {
                 this.setState({
@@ -118,9 +123,18 @@ class SignIn extends React.Component{
 
 function mapStateToProps(state) {
     const { isLoggedIn } = state.auth;
+    const userProfile = state.userProfile
     return {
-        isLoggedIn
+        isLoggedIn,
+        userProfile
     };
 }
 
-export default connect(mapStateToProps)(SignIn) ;
+function mapDispatchToProps(dispatch){
+    return {
+        fetchProfile: () => dispatch(fetchProfile()),
+        login: (email, password) => dispatch(login(email, password))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn) ;

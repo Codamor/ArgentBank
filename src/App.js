@@ -19,7 +19,7 @@ function App() {
               <Switch>
                   <Route exact path="/" component={HomePage } />
                   <Route path="/signin" component={SignInPage } />
-                  <Route path="/user" component={UserPage } />
+                  <Route path="/profile" component={UserPage } />
               </Switch>
 
               <Footer text={"Copyright 2022 Argent Bank"} />
