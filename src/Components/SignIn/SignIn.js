@@ -57,6 +57,7 @@ class SignIn extends React.Component{
                 >
                 </div>
                 <button type="submit" className="sign-in-button">Sign In</button>
+                {this.state.showError && <div className="sign-in-error"> Signin failed: verify email and password </div>}
             </form>
         );
     }
