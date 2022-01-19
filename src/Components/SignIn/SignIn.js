@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {login} from "../../store/Actions/AuthActions";
 import "./SignIn.css" ;
 import {Redirect} from "react-router-dom";
+import {fetchProfile} from "../../store/Actions/UserActions";
 
 /**
  * Component for showing the sign in form
@@ -82,10 +83,15 @@ class SignIn extends React.Component{
 
         dispatch(login(this.state.email, this.state.password))
             .then(() => {
-                if (this.state.rememberUser) {
+                if (this.state.rememberMe) {
                     const savedUser = { email: this.state.email, password: this.state.password };
                     localStorage.setItem('rememberedUser', JSON.stringify(savedUser));
                 } else localStorage.removeItem('rememberedUser');
+                dispatch(fetchProfile()).then(() => {
+                    this.setState({
+                        loading: false,
+                    });
+                });
             })
             .catch(() => {
                 this.setState({
@@ -118,8 +124,10 @@ class SignIn extends React.Component{
 
 function mapStateToProps(state) {
     const { isLoggedIn } = state.auth;
+    const userProfile = state.userProfile
     return {
-        isLoggedIn
+        isLoggedIn,
+        userProfile
     };
 }
 
