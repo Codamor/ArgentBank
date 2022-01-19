@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Navigation from "./Components/Navigation/Navigation";
 import Footer from "./Components/Footer/Footer";
 import HomePage from "./Pages/HomePage";
@@ -16,11 +16,11 @@ function App() {
           <BrowserRouter>
               <Navigation />
 
-              <Routes>
-                  <Route exact path="/" element={<HomePage />} />
-                  <Route path="/user/login" element={<SignInPage />} />
-                  <Route path="/user/profile" element={<UserPage />} />
-              </Routes>
+              <Switch>
+                  <Route exact path="/" component={HomePage } />
+                  <Route path="/signin" component={SignInPage } />
+                  <Route path="/user" component={UserPage } />
+              </Switch>
 
               <Footer text={"Copyright 2022 Argent Bank"} />
 
