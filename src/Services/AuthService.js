@@ -1,7 +1,5 @@
 import http from './http-common';
 
-const API_URL = "localhost:3001/api/v1" ;
-
 /**
  * Class for login and logout services
  *
