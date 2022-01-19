@@ -38,7 +38,7 @@ class UserPage extends React.Component{
                             (
                                 <React.Fragment>
 
-                                    <h2>{this.props.firstName} {this.props.lastName} !</h2>
+                                    <h2 className="header">{this.props.firstName} {this.props.lastName} !</h2>
 
                                     <button
                                         className="edit-button"

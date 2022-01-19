@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import "./ProfileEditor.css"
 
 import {updateProfile} from "../../store/Actions/UserActions";
 
@@ -25,14 +26,16 @@ class ProfileEditor extends Component {
         return (
             <React.Fragment>
                 <div>
-                    <div>
+                    <div className="profile-input-group">
                         <input
+                            className="profile-input"
                             placeholder={firstName}
                             type="text"
                             value={this.state.editorFirstName}
                             onChange={this.onChangeFirstName}
                         />
                         <input
+                            className="profile-input"
                             placeholder={lastName}
                             type="text"
                             value={this.state.editorLastName}
