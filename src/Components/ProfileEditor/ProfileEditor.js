@@ -39,9 +39,9 @@ class ProfileEditor extends Component {
                             onChange={this.onChangeLastName}
                         />
                     </div>
-                    <div>
-                        <button onClick={() => this.handleProfileUpdate()}>Save</button>
-                        <button onClick={() => this.props.closeEditor()}>Cancel</button>
+                    <div className="edit-button-group">
+                        <button className="edit-button" onClick={() => this.handleProfileUpdate()}>Save</button>
+                        <button className="edit-button" onClick={() => this.props.closeEditor()}>Cancel</button>
                     </div>
                 </div>
             </React.Fragment>

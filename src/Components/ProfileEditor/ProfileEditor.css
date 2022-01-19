@@ -1,0 +1,6 @@
+.edit-button-group{
+    display: flex;
+    justify-content: space-around;
+    width: 180px;
+    margin-top: 20px;
+}

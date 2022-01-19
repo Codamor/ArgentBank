@@ -90,6 +90,11 @@ class SignIn extends React.Component{
                         loading: false,
                     });
                 } else localStorage.removeItem('rememberedUser');
+                this.props.fetchProfile().then(() => {
+                    this.setState({
+                        loading: false,
+                    });
+                });
                             })
             .catch(() => {
                 this.setState({
