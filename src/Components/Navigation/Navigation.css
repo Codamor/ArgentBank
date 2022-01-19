@@ -19,6 +19,15 @@
     margin-right: 0.5rem;
 }
 
+
+.main-nav-login a{
+    margin-right: 20px;
+}
+
+.main-nav-login i{
+    margin-right: 5px;
+}
+
 .main-nav-item:hover {
     text-decoration: underline;
 }
