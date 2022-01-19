@@ -1,27 +1,32 @@
 import React from "react";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Navigation from "./Components/Navigation/Navigation";
 import Footer from "./Components/Footer/Footer";
 import HomePage from "./Pages/HomePage";
 import SignInPage from "./Pages/SignInPage";
 import UserPage from "./Pages/UserPage/UserPage";
+import {Provider} from "react-redux";
+import {store} from "./store/store";
 
 
 
 function App() {
   return (
-      <BrowserRouter>
-          <Navigation />
+      <Provider store={store} >
+          <BrowserRouter>
+              <Navigation />
 
-          <Routes>
-              <Route exact path="/" element={<HomePage />} />
-              <Route path="/sign-in" element={<SignInPage />} />
-              <Route path="/user" element={<UserPage />} />
-          </Routes>
+              <Switch>
+                  <Route exact path="/" component={HomePage } />
+                  <Route path="/signin" component={SignInPage } />
+                  <Route path="/user" component={UserPage } />
+              </Switch>
 
-          <Footer text={"Copyright 2022 Argent Bank"} />
+              <Footer text={"Copyright 2022 Argent Bank"} />
 
-      </BrowserRouter>
+          </BrowserRouter>
+      </Provider>
+
   );
 }
 
