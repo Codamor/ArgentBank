@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/SignIn/SignIn.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/SignIn/SignIn.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import {connect} from "react-redux";
+import {login} from "../../store/Actions/AuthActions";
+import "./SignIn.css" ;
+import {Redirect} from "react-router-dom";
+import {fetchProfile} from "../../store/Actions/UserActions";
+
+/**
+ * Component for showing the sign in form
+ * Display a form
+ *
+ * @component
+ */
+class SignIn extends React.Component{
+    constructor(props) {
+        super(props);
+        this.handleSignIn = this.handleSignIn.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeRememberMe = this.onChangeRememberMe.bind(this);
+        this.state = {
+            email: '',
+            password: '',
+            rememberMe: false,
+            loading: false,
+            showError: false,
+        };
+    }
+
+
+    render() {
+
+        if (this.props.isLoggedIn === true) {
+            return &lt;Redirect to="/profile" />
+        }
+
+        return (
+            &lt;form onSubmit={this.handleSignIn}>
+                &lt;div className="input-wrapper">
+                    &lt;label htmlFor="username">Username&lt;/label
+                    >&lt;input type="text" id="username"value={this.state.email} onChange={this.onChangeEmail} />
+                &lt;/div>
+                &lt;div className="input-wrapper">
+                    &lt;label htmlFor="password">Password&lt;/label
+                    >&lt;input type="password" id="password" value={this.state.password} onChange={this.onChangePassword}/>
+                &lt;/div>
+                &lt;div className="input-remember">
+                    &lt;input
+                        type="checkbox"
+                        id="remember-me"
+                        checked={this.state.rememberMe}
+                        onChange={this.onChangeRememberMe}
+                    />
+                    &lt;label htmlFor="remember-me">
+                        Remember me
+                    &lt;/label
+                >
+                &lt;/div>
+                &lt;button type="submit" className="sign-in-button">Sign In&lt;/button>
+                {this.state.showError &amp;&amp; &lt;div className="sign-in-error"> Signin failed: verify email and password &lt;/div>}
+            &lt;/form>
+        );
+    }
+
+    componentDidMount() {
+        const savedUser = JSON.parse(localStorage.getItem('rememberedUser'));
+        if (savedUser) {
+            this.setState({
+                email: savedUser.email,
+                password: savedUser.password,
+                rememberMe: true,
+            });
+        }
+    }
+
+    handleSignIn(event) {
+        event.preventDefault();
+
+        this.setState({
+            loading: true,
+        });
+
+
+        this.props.login(this.state.email, this.state.password)
+            .then(() => {
+                if (this.state.rememberMe) {
+                    const savedUser = { email: this.state.email, password: this.state.password };
+                    localStorage.setItem('rememberedUser', JSON.stringify(savedUser));
+                    this.setState({
+                        loading: false,
+                    });
+                } else localStorage.removeItem('rememberedUser');
+                this.props.fetchProfile()
+            })
+            .catch(() => {
+                this.setState({
+                    loading: false,
+                    showError: true,
+                });
+            });
+    }
+
+    onChangeEmail(event) {
+        this.setState({
+            email: event.target.value,
+            showError: false,
+        });
+    }
+
+    onChangePassword(event) {
+        this.setState({
+            password: event.target.value,
+            showError: false,
+        });
+    }
+
+    onChangeRememberMe(event) {
+        this.setState({
+            rememberMe: event.target.value,
+        });
+    }
+}
+
+function mapStateToProps(state) {
+    const { isLoggedIn } = state.auth;
+    const userProfile = state.userProfile
+    return {
+        isLoggedIn,
+        userProfile
+    };
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        fetchProfile: () => dispatch(fetchProfile()),
+        login: (email, password) => dispatch(login(email, password))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn) ;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Account.html">Account</a></li><li><a href="AuthService.html">AuthService</a></li><li><a href="Feature.html">Feature</a></li><li><a href="Footer.html">Footer</a></li><li><a href="Hero.html">Hero</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="Item.html">Item</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="SignIn.html">SignIn</a></li><li><a href="SignInPage.html">SignInPage</a></li><li><a href="UserPage.html">UserPage</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Jan 21 2022 16:24:59 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
