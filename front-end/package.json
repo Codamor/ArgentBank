@@ -1,8 +1,14 @@
 {
-  "homepage": "https://openclassroomsprojects.github.io/AdelinoAraujo_13_03012022/",
-  "name": "react app",
+  "name": "argent-bank",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Codamor/ArgentBank.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Codamor/ArgentBank/issues"
+  },
   "dependencies": {
     "@redux-devtools/extension": "^3.1.0",
     "@testing-library/jest-dom": "^5.16.1",
